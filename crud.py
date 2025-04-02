@@ -1,4 +1,6 @@
 from sqlalchemy.orm import Session
+from sqlalchemy import func
+
 import models, schemas
 
 def create_review(db: Session, review_data: schemas.ReviewCreate):
@@ -53,6 +55,10 @@ def delete_entity_and_reviews(db: Session, entity_id: int):
     # delete the entity
     db.query(models.Entity).filter(models.Entity.id == entity_id).delete()
     db.commit()
+
+def get_average_rating(db: Session, entity_id: int):
+    average_rating = db.query(func.avg(models.Review.rating)).filter(models.Review.entity_id == entity_id).scalar()
+    return average_rating or 0  # Return 0 if no reviews exist
 
 def get_all_entities(db: Session):
     return db.query(models.Entity).all()
