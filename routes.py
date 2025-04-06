@@ -39,10 +39,6 @@ def update_review(review_id: UUID, review: schemas.ReviewUpdate, db: Session = D
 
 
 @router.get("/v1/entities/{entity_id}/average-rating", response_model=dict)
-def get_average_rating(entity_id: int, db: Session = Depends(get_db)):
-    entity = crud.get_entity_by_id(db, entity_id)  # Check if the entity exists
-    if not entity:
-        raise HTTPException(status_code=404, detail="Entity not found")
-    
+def get_average_rating(entity_id: UUID, db: Session = Depends(get_db)):    
     average_rating = crud.get_average_rating(db, entity_id)
     return {"average_rating": round(average_rating, 1)}  # Round to 1 decimal place

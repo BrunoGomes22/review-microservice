@@ -41,6 +41,6 @@ def delete_review(db: Session, review_id: int):
 def get_review(db: Session, review_id: UUID):
     return db.query(models.Review).filter(models.Review.id == review_id).first()
 
-def get_average_rating(db: Session, entity_id: int):
+def get_average_rating(db: Session, entity_id: UUID):
     average_rating = db.query(func.avg(models.Review.rating)).filter(models.Review.entity_id == entity_id).scalar()
     return average_rating or 0  # Return 0 if no reviews exist

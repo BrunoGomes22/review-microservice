@@ -5,7 +5,8 @@ async function loadReviews(productId, containerId) {
   try {
     // Fetch the average rating
     const averageRatingResponse = await fetch(AVERAGE_RATING_API_URL);
-    const { average_rating } = await averageRatingResponse.json();
+    const averageRatingData = await averageRatingResponse.json();
+    const average_rating = averageRatingData.average_rating || 0; // Default to 0 if not found
 
     // Fetch the reviews
     const reviewsResponse = await fetch(REVIEWS_API_URL);
