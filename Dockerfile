@@ -18,8 +18,8 @@ COPY . .
 COPY wait_for_db.py /app/wait_for_db.py
 
 # Expose the port your FastAPI app will run on
-EXPOSE 8000
+EXPOSE 8001
 
 # Command to run the FastAPI app
-# CMD ["python3", "wait_for_db.py", "&&", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
-CMD ["sh", "-c", "python3 wait_for_db.py && uvicorn main:app --host 0.0.0.0 --port 8000"]
+# CMD ["python3", "wait_for_db.py", "&&", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8001"]
+CMD ["sh", "-c", "python3 wait_for_db.py && uvicorn main:app --host 0.0.0.0 --port 8001"]

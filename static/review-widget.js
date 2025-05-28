@@ -1,6 +1,6 @@
 async function loadReviews(productId, containerId) {
-  const REVIEWS_API_URL = `http://127.0.0.1:8000/v1/entities/${productId}/reviews`;
-  const AVERAGE_RATING_API_URL = `http://127.0.0.1:8000/v1/entities/${productId}/average-rating`;
+  const REVIEWS_API_URL = `http://127.0.0.1:8001/v1/entities/${productId}/reviews`;
+  const AVERAGE_RATING_API_URL = `http://127.0.0.1:8001/v1/entities/${productId}/average-rating`;
 
   try {
     // Fetch the average rating
@@ -110,7 +110,7 @@ async function loadReviews(productId, containerId) {
       const rating = document.getElementById("review-rating").value;
       const comment = document.getElementById("review-comment").value;
 
-      const res = await fetch("http://127.0.0.1:8000/v1/reviews", {
+      const res = await fetch("http://127.0.0.1:8001/v1/reviews", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ entity_id: productId, rating, comment }),
